@@ -10,6 +10,12 @@ export class AuthService {
         private jwt: JwtService
     ) {}
 
+    async cookieJwt(userDto) {
+        const payload = { email: userDto.email };
+        const token = this.jwt.sign(payload);
+        return `Authentication=${token}; HttpOnly; Path=/; Max-Age='7d';`
+    }
+
     async validateUser(userDto) {
         const user = await this.userService.findOne(userDto);
         const passCheck = await bcrypt.compare(userDto.password, user.password);
