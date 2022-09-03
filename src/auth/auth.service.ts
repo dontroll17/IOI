@@ -11,7 +11,7 @@ export class AuthService {
     ) {}
 
     async cookieJwt(userDto) {
-        const payload = { email: userDto.email };
+        const payload = await this.validateUser(userDto);
         const token = this.jwt.sign(payload);
         return `Authentication=${token}; HttpOnly; Path=/; Max-Age='7d';`
     }
