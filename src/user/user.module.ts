@@ -14,6 +14,7 @@ import { UserService } from './user.service';
         schema: UserSchema
       }
     ])
-  ]
+  ],
+  exports: [UserService]
 })
 export class UserModule {}

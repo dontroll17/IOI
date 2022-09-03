@@ -11,6 +11,15 @@ export class UserService {
         @InjectModel('User') private userModel: Model<UserDocument>
     ) {}
 
+    async findOne(userDto) {
+        const user = await this.userModel.findOne({ email: userDto.email }).exec();
+        if(!user) {
+            throw new NotFoundException('User not found');
+        }
+        
+        return user;
+    }
+
     async getUsers(): Promise<User[]> {
         return await this.userModel.find().exec();
     }
