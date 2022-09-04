@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service';
 import * as bcrypt from 'bcryptjs';
@@ -10,6 +10,8 @@ export class AuthService {
         private jwt: JwtService
     ) {}
 
+    private readonly logger = new Logger('App test');
+    
     async cookieJwt(userDto) {
         const payload = await this.validateUser(userDto);
         const token = this.jwt.sign(payload);
@@ -39,6 +41,7 @@ export class AuthService {
     }
 
     async login(userDto) {
+        this.logger.debug(userDto);
         const checkUser = await this.validateUser(userDto);
         return this.genToken(checkUser);
     }
