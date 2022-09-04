@@ -10,21 +10,15 @@ export class AuthController {
 
     @Post('login')
     async login(
-        @Res({passthrough: true}) res: Response,
         @Body() userDto: UserDto
     ) {
-        const cookie = await this.authService.cookieJwt(userDto);
-        res.setHeader('Set-Cookie', cookie);
         return this.authService.login(userDto);
     }
 
     @Post('signup')
     async signup(
-        @Res({passthrough: true}) res: Response,
         @Body() createUserDto: CreateUserDto
     ) {
-        const cookie = await this.authService.cookieJwt(createUserDto);
-        res.setHeader('Set-Cookie', cookie);
         return this.authService.signup(createUserDto);
     }
 }

@@ -11,12 +11,6 @@ export class AuthService {
     ) {}
 
     private readonly logger = new Logger('App test');
-    
-    async cookieJwt(userDto) {
-        const payload = await this.validateUser(userDto);
-        const token = this.jwt.sign(payload);
-        return `Authentication=${token}; HttpOnly; Path=/; Max-Age='7d';`
-    }
 
     async validateUser(userDto) {
         const user = await this.userService.findOne(userDto);
