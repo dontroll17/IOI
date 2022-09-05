@@ -1,7 +1,6 @@
 ## Description
 
 this is mo`s server
-[mo client repo](https://github.com/dontroll17/mo-client)
 
 ## Installation
 
