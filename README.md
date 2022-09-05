@@ -1,11 +1,25 @@
 ## Description
 
-this is mo`s server
+this is mo`s server for testing 
+with mongo and redis in docker
+
+for some reason on windows run redis in one docker container problem
+on linux no problem, but that's why redis is not included in compose
 
 ## Installation
 
+first of all rename .env.example to .env
+
+with docker:
 ```bash
-$ npm install
+$ docker run -d --name redis-stack -p 6379:6379 -p 8001:8001 redis/redis-stack:latest
+
+ $ docker-compose up -d
+```
+
+without docker:
+```bash
+$ npm ci
 ```
 
 ## Running the app
@@ -33,17 +47,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).

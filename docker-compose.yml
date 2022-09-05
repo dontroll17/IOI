@@ -1,0 +1,36 @@
+version: '3.7'
+
+services:
+  app:
+    build: 
+      context: .
+    restart: always
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - ${PORT}:${PORT}
+    command: npm run start:dev
+    env_file:
+      - .env
+    networks:
+      - mongoDB
+    depends_on:
+      - mongoDB
+
+  mongoDB:
+    container_name: mongoDB
+    image: mongo
+    restart: always
+    networks:
+      - mongoDB
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: pass
+      ME_CONFIG_MONGODB_URL: mongodb://admin:pass@$mongoDB:27017/
+
+networks:
+  mongoDB:
+volumes:
+  cache:
+    driver: local
