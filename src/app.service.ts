@@ -15,7 +15,8 @@ export class AppService {
         await this.cacheManager.del('cached_object');
         
         return {
-            message: 'This is test route'
+            message: 'This is test route',
+            state: 'online'
         }
     }
 }
