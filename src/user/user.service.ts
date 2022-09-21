@@ -36,7 +36,7 @@ export class UserService {
 
     async createUser(createUserDto: CreateUserDto): Promise<User> {
         const { password, email } = { ...createUserDto }
-        const user = await this.userModel.findOne({ email: email});
+        const user = await this.userModel.findOne({ email: email}).exec();
 
         if(user) {
             throw new HttpException('Email already exist', HttpStatus.CONFLICT);
