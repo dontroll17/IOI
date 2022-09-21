@@ -1,13 +1,12 @@
 import { getModelToken } from "@nestjs/mongoose";
 import { Test } from "@nestjs/testing";
-import {  User } from "./model/user.schema";
+import { User } from "./model/user.schema";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";
 
 
 describe('Appservice', () => {
     let service: UserService;
-    let controller: UserController;
 
     const mock = {
         find: () => {
@@ -43,29 +42,32 @@ describe('Appservice', () => {
         }).compile();
 
         service = moduleRef.get<UserService>(UserService);
-        controller = moduleRef.get<UserController>(UserController);
     });
 
 
     describe('test defined', () => {
         it('should be defined create', () => {
-            expect(controller.createUser).toBeDefined();
+            expect(service.findOne).toBeDefined();
         });
 
         it('should be defined create', () => {
-            expect(controller.getUsers).toBeDefined();
+            expect(service.getUsers).toBeDefined();
         });
 
         it('should be defined create', () => {
-            expect(controller.createUser).toBeDefined();
+            expect(service.createUser).toBeDefined();
         });
 
         it('should be defined create', () => {
-            expect(controller.updateUser).toBeDefined();
+            expect(service.getUserById).toBeDefined();
         });
 
         it('should be defined create', () => {
-            expect(controller.removeUser).toBeDefined();
+            expect(service.updateUser).toBeDefined();
+        });
+
+        it('should be defined create', () => {
+            expect(service.removeUser).toBeDefined();
         });
     })
 });
