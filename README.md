@@ -1,6 +1,6 @@
 ## Description
 
-this is mo`s server for testing 
+this is IOI server for testing 
 with mongo and redis in docker
 
 for some reason on windows run redis in one docker container problem
